@@ -1,0 +1,23 @@
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" id="zmyseries-android-manifest-tools-schema" version="0.1">
+  <name>AndroidManifestToolsSchema</name>
+  <platform name="android">
+    <dependency id="cordova-plugin-config-file-xsl" url="https://github.com/matb33/cordova-plugin-config-file-xsl" />
+    <config-file-xsl target="AndroidManifest.xml">
+      <xsl:stylesheet version="1.0"
+                      xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                      xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools">
+        <xsl:template match="node()|@*">
+          <xsl:copy>
+            <xsl:apply-templates select="node()|@*" />
+          </xsl:copy>
+        </xsl:template>
+        <xsl:template match="manifest">
+          <manifest xmlns:tools="http://schemas.android.com/tools">
+            <xsl:apply-templates select="@*|node()" />
+          </manifest>
+        </xsl:template>
+      </xsl:stylesheet>
+    </config-file-xsl>
+  </platform>
+</plugin>
